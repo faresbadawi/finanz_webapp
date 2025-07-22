@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>Familien‑Finanzen</title>
+
+  <!-- Responsives Verhalten auf allen Geräten -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+  <!-- Dein Favicon für Browser‑Tabs -->
+  <link
+    rel="icon"
+    type="image/x-icon"
+    href="{{ url_for('static', filename='icons/home_5615735.ico') }}"
+  >
+
+  <!-- Apple Touch Icon für iOS‑Homescreen -->
+  <link
+    rel="apple-touch-icon"
+    sizes="180x180"
+    href="{{ url_for('static', filename='icons/home_5615735.ico') }}"
+  >
+
+  <!-- PWA‑Manifest -->
+  <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+
+  <!-- Theme-Color für Status‑Bar / Browser‑UI -->
+  <meta name="theme-color" content="#121212">
+
+  <!-- Font Awesome, falls du zusätzliche Icons per CSS-Klassen nutzt -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-p6U3gixq3FG0P5x4rFFvBbjxlg2y1kl9ygc8bqQkTF+eA+2ib4gNtX1Ljq3cLo2aw2dExjKsfQRjgrk6xT3zAw=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  <!-- Haupt‑Stylesheet -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header>
+    <!-- Hier dein Icon im Header -->
+    <img
+      src="{{ url_for('static', filename='icons/home_5615735.ico') }}"
+      alt="App Icon"
+      width="32"
+      height="32"
+      style="vertical-align: middle; margin-right: 0.5rem;"
+    >
+    <h1 style="display: inline-block; vertical-align: middle; margin: 0;">
+      Familien‑Finanzen
+    </h1>
+  </header>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Service Worker Registrierung für PWA -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register("{{ url_for('static', filename='service-worker.js') }}")
+        .then(() => console.log('Service Worker registriert'))
+        .catch(e => console.error('SW-Fehler:', e));
+    }
+  </script>
+</body>
+</html>

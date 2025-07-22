@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>Familien‑Finanzen</title>
+
+  <!-- Responsives Verhalten auf allen Geräten -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+  <!-- Dein Favicon für Browser‑Tabs -->
+  <link
+    rel="icon"
+    type="image/x-icon"
+    href="/static/icons/home_5615735.ico"
+  >
+
+  <!-- Apple Touch Icon für iOS‑Homescreen -->
+  <link
+    rel="apple-touch-icon"
+    sizes="180x180"
+    href="/static/icons/home_5615735.ico"
+  >
+
+  <!-- PWA‑Manifest -->
+  <link rel="manifest" href="/static/manifest.json">
+
+  <!-- Theme-Color für Status‑Bar / Browser‑UI -->
+  <meta name="theme-color" content="#121212">
+
+  <!-- Font Awesome, falls du zusätzliche Icons per CSS-Klassen nutzt -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-p6U3gixq3FG0P5x4rFFvBbjxlg2y1kl9ygc8bqQkTF+eA+2ib4gNtX1Ljq3cLo2aw2dExjKsfQRjgrk6xT3zAw=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  <!-- Haupt‑Stylesheet -->
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <!-- Hier dein Icon im Header -->
+    <img
+      src="/static/icons/home_5615735.ico"
+      alt="App Icon"
+      width="32"
+      height="32"
+      style="vertical-align: middle; margin-right: 0.5rem;"
+    >
+    <h1 style="display: inline-block; vertical-align: middle; margin: 0;">
+      Familien‑Finanzen
+    </h1>
+  </header>
+
+  <main>
+    
+<div class="glass-card balance-card">
+  <h2><i class="fas fa-chart-pie"></i> Saldo Übersicht</h2>
+  <ul>
+    
+      <li class="positive">
+        <span>🔗 Gemeinsam</span>
+        <span>0.00 €</span>
+      </li>
+    
+  </ul>
+</div>
+
+<div class="glass-card form-card">
+  <h2><i class="fas fa-edit"></i> Neuen Eintrag</h2>
+  <form method="post">
+    <select name="type">
+      <option value="income">➕ Einnahme</option>
+      <option value="expense">➖ Ausgabe</option>
+    </select>
+    <select name="person_id">
+      <option value="None">🔗 Gemeinsam</option>
+      
+    </select>
+    <input type="text" name="source_desc" placeholder="Quelle / Beschreibung" required>
+    <input type="number" step="0.01" name="amount" placeholder="Betrag in €" required>
+    <button type="submit"><i class="fas fa-save"></i> Speichern</button>
+  </form>
+  <hr>
+  <h3><i class="fas fa-user-plus"></i> Neue Person</h3>
+  <form action="/add_person" method="post">
+    <input type="text" name="person_name" placeholder="Name z. B. Vater" required>
+    <button type="submit"><i class="fas fa-user"></i> Anlegen</button>
+  </form>
+</div>
+
+  </main>
+
+  <!-- Service Worker Registrierung für PWA -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register("/static/service-worker.js")
+        .then(() => console.log('Service Worker registriert'))
+        .catch(e => console.error('SW-Fehler:', e));
+    }
+  </script>
+</body>
+</html>

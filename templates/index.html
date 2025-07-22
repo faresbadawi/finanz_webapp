@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="glass-card balance-card">
-  <h2><i class="fas fa-chart-pie"></i> Saldo Übersicht</h2>
+  <h2>Saldo Übersicht</h2>
   <ul>
     {% for name, bal in balances %}
       <li class="{{ 'positive' if bal>=0 else 'negative' }}">
@@ -13,7 +13,7 @@
 </div>
 
 <div class="glass-card form-card">
-  <h2><i class="fas fa-edit"></i> Neuen Eintrag</h2>
+  <h2>Neuen Eintrag</h2>
   <form method="post">
     <select name="type">
       <option value="income">➕ Einnahme</option>
@@ -27,13 +27,13 @@
     </select>
     <input type="text" name="source_desc" placeholder="Quelle / Beschreibung" required>
     <input type="number" step="0.01" name="amount" placeholder="Betrag in €" required>
-    <button type="submit"><i class="fas fa-save"></i> Speichern</button>
+    <button type="submit">Speichern</button>
   </form>
   <hr>
-  <h3><i class="fas fa-user-plus"></i> Neue Person</h3>
+  <h3>Neue Person</h3>
   <form action="{{ url_for('add_person') }}" method="post">
-    <input type="text" name="person_name" placeholder="Name z. B. Vater" required>
-    <button type="submit"><i class="fas fa-user"></i> Anlegen</button>
+    <input type="text" name="person_name" placeholder="Name z. B. Vater" required>
+    <button type="submit">Person anlegen</button>
   </form>
 </div>
 {% endblock %}
